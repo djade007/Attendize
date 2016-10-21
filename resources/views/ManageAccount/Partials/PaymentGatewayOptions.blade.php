@@ -152,6 +152,20 @@
 </section>
 
 
+{{--Interswitch--}}
+<section class="payment_gateway_options" id="gateway_{{config('attendize.payment_gateway_interswitch')}}">
+    <h4>Interswitch Settings</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                {!! Form::label('interswitch[macKey]', 'Interswitch MAC Key', array('class'=>'control-label ')) !!}
+                {!! Form::text('interswitch[macKey]', $account->getGatewayConfigVal(config('attendize.payment_gateway_interswitch'), 'macKey'),[ 'class'=>'form-control'])  !!}
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
 
 <div class="row">

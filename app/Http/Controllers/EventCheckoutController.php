@@ -369,6 +369,17 @@ class EventCheckoutController extends Controller
                         $transaction_data['description'] = "Ticket sales " . $transaction_data['transactionId'];
 
                         break;
+                    case config('attendize.payment_gateway_interswitch'):
+                        $transaction_data += [
+                            'transactionId' => $event_id . date('YmdHis'),       // TODO: Where to generate transaction id?,
+                            'productId' => 6205,
+                            'payItemId' => 101,
+                            'returnUrl' => route('showEventCheckoutPaymentReturn', [
+                                'event_id'              => $event_id,
+                                'is_payment_successful' => 1
+                            ])
+                        ];
+                        break;
                     default:
                         Log::error('No payment gateway configured.');
                         return repsonse()->json([
@@ -467,7 +478,11 @@ class EventCheckoutController extends Controller
                 'testMode' => config('attendize.enable_test_payments'),
             ]);
 
-        $transaction = $gateway->completePurchase($ticket_order['transaction_data'][0]);
+        $data = $ticket_order['transaction_data'][0];
+        if($request->isMethod('POST')) // include all returned data if request is post
+            $data += $request->all();
+
+        $transaction = $gateway->completePurchase($data);
 
         $response = $transaction->send();
 

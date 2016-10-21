@@ -4878,7 +4878,8 @@ $.extend(
         {
             var form = '';
             $.each( args, function( key, value ) {
-                value = value.split('"').join('\"')
+                if($.type(value) == 'string')
+                  value = value.split('"').join('\"')
                 form += '<input type="hidden" name="'+key+'" value="'+value+'">';
             });
             $('<form action="' + location + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();

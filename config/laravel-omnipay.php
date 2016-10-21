@@ -19,6 +19,10 @@ return [
             'driver'  => 'Stripe',
             'options' => [],
         ],
+        'interswitch' => [
+            'driver' => 'Interswitch',
+            'options' => []
+        ]
     ],
 
 ];

@@ -149,7 +149,7 @@ Route::group(['prefix' => 'e'], function () {
         'uses' => 'EventCheckoutController@showEventCheckout',
     ]);
 
-    Route::get('{event_id}/checkout/success', [
+    Route::match(['GET', 'POST'], '{event_id}/checkout/success', [
         'as'   => 'showEventCheckoutPaymentReturn',
         'uses' => 'EventCheckoutController@showEventCheckoutPaymentReturn',
     ]);

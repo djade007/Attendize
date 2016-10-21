@@ -522,6 +522,20 @@ class CurrencySeeder extends Seeder
                 'created_at' => '2015-07-22 23:25:30',
                 'updated_at' => '2015-07-22 23:25:30',
             ],
+            [
+                'id' => 37,
+                'title' => 'Naira (NGN)',
+                'symbol_left' => '₦',
+                'symbol_right' => '',
+                'code' => 'NGN',
+                'decimal_place' => 2,
+                'value' => 0.00,
+                'decimal_point' => '.',
+                'thousand_point' => ',',
+                'status' => 1,
+                'created_at' => '2016-10-21 23:25:30',
+                'updated_at' => '2016-10-21 23:25:30',
+            ],
         ];
 
         DB::table('currencies')->insert($currencies);
